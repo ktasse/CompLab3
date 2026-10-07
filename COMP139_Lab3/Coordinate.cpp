@@ -4,19 +4,33 @@
 #include <stdexcept>
 #include <numbers>
 
+/*
+* Take a number grade and convert into a letter
+*
+* @param numGrade  The number grade
+* @return  String that is the letter grade
+*
+*/
+
+
+
+
+
+
+
+
 // Constructor using rectangular coordinates
 Coordinate::Coordinate(RectangularCoords coords)
 {
-    // Store rectangular coordinates
+   
     rectangular = coords;
-    // Calculate and store spherical coordinates
     spherical = rectangularToSpherical(coords.x, coords.y, coords.z);
 }
 
 // Constructor using spherical coordinates
 Coordinate::Coordinate(SphericalCoords coords)
 {
-    // Check that spherical coordinates are valid
+    
     if (coords.radius < 0.0) {
         throw std::invalid_argument("Out of range");
     }
@@ -26,23 +40,22 @@ Coordinate::Coordinate(SphericalCoords coords)
 	if (coords.inclination <= -std::numbers::pi || coords.inclination > std::numbers::pi) {
 		throw std::invalid_argument("Out of range");
 	}
-    // Store spherical coordinates
+   
     spherical = coords;
-    // Calculate and store rectangular coordinates
     rectangular = sphericalToRectangular(coords.radius, coords.azimuth, coords.inclination);
 }
 
 // Return rectangular coordinates
 RectangularCoords Coordinate::getRectangular() const
 {
-    // Return stored rectangular coordinates
+   
 	return rectangular;
 }
 
 // Return spherical coordinates
 SphericalCoords Coordinate::getSpherical() const
 {
-    // Return stored spherical coordinates
+    
     return spherical;
 }
 
