@@ -4,22 +4,12 @@
 #include <stdexcept>
 #include <numbers>
 
+
 /*
-* Take a number grade and convert into a letter
+* Construct coordinate from rectangular coordinates
 *
-* @param numGrade  The number grade
-* @return  String that is the letter grade
-*
+* @param coords  Rectangular coordinates
 */
-
-
-
-
-
-
-
-
-// Constructor using rectangular coordinates
 Coordinate::Coordinate(RectangularCoords coords)
 {
    
@@ -27,7 +17,12 @@ Coordinate::Coordinate(RectangularCoords coords)
     spherical = rectangularToSpherical(coords.x, coords.y, coords.z);
 }
 
-// Constructor using spherical coordinates
+
+/*
+* Construct coordinate from spherical coordinates
+*
+* @param coords  spherical coordinates
+*/
 Coordinate::Coordinate(SphericalCoords coords)
 {
     
@@ -45,28 +40,53 @@ Coordinate::Coordinate(SphericalCoords coords)
     rectangular = sphericalToRectangular(coords.radius, coords.azimuth, coords.inclination);
 }
 
-// Return rectangular coordinates
+
+/*
+* Get rectangular coordinates
+*
+* @return  Rectangular coordinates
+*/
 RectangularCoords Coordinate::getRectangular() const
 {
    
 	return rectangular;
 }
 
-// Return spherical coordinates
+
+/*
+* Get spherical coordinates
+*
+* @return  Spherical coordinates
+*/
 SphericalCoords Coordinate::getSpherical() const
 {
     
     return spherical;
 }
 
-// Calculate radius from x, y, z
+
+/*
+* Calculate radius from rectangular coordinates
+*
+* @param x  X coordinate
+* @param y  Y coordinate
+* @param z  Z coordinate
+* @return  Radius
+*/
 double Coordinate::getRadius(double x, double y, double z)
-{
-    
+{  
     return std::sqrt(x * x + y * y + z * z);
 }
 
-// Convert rectangular coordinates to spherical coordinates
+
+/*
+* Convert rectangular coordinates to spherical coordinates
+*
+* @param x  X coordinate
+* @param y  Y coordinate
+* @param z  Z coordinate
+* @return  Spherical coordinates
+*/
 SphericalCoords Coordinate::rectangularToSpherical(double x, double y, double z)
 {
     
@@ -77,11 +97,17 @@ SphericalCoords Coordinate::rectangularToSpherical(double x, double y, double z)
 	double inclination = std::atan2(std::sqrt(x * x + y * y), z);
 
     return SphericalCoords{radius, azimuth, inclination};
-   
-    
 }
 
-// Convert spherical coordinates to rectangular coordinates
+
+/*
+* Convert spherical coordinates to rectangular coordinates
+*
+* @param radius Distance from origin
+* @param azimuth Angle in XY plane
+* @param inclination Angle from positive Z axis
+* @return  Rectangular coordinates
+*/
 RectangularCoords Coordinate::sphericalToRectangular(double radius, double azimuth, double inclination)
 {
     double x = radius * std::sin(inclination) * std::cos(azimuth);
@@ -89,6 +115,4 @@ RectangularCoords Coordinate::sphericalToRectangular(double radius, double azimu
     double z = radius * std::cos(inclination);
 
     return RectangularCoords{ x, y, z };
-
-
 }

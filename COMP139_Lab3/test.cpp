@@ -79,6 +79,7 @@ TEST(FunctionTest, sphericalToRectangular2)
 	ASSERT_NEAR(rectangular.z, 0, kTextEps);
 }
 
+//Testing radius input bounds
 TEST(InvalidArgumentTest, NegativeRadius)
 {
 	SphericalCoords spherical1{ -1.0, 0.0, 0.0 };
@@ -93,6 +94,8 @@ TEST(InvalidArgumentTest, ZeroRadius)
 	EXPECT_NO_THROW({ Coordinate coord(spherical1); });
 }
 
+
+//testing input bounds for azimuth
 TEST(InvalidArgumentTest, AzimuthOutOfBounds)
 {
 	SphericalCoords spherical1{ 1.0, -std::numbers::pi, 0.0 };
@@ -107,6 +110,8 @@ TEST(InvalidArgumentTest, AzimuthValidBound)
 	EXPECT_NO_THROW({ Coordinate coord(spherical1); });
 }
 
+
+//testing input bounds for inclination
 TEST(InvalidArgumentTest, InclinationOutOfBounds)
 {
 	SphericalCoords spherical1{ 1.0, 0.0, -std::numbers::pi };
